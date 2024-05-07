@@ -2,8 +2,10 @@
 import React, { useState } from "react";
 import Toast from "@/app/Toast";
 import {Avatar, AvatarGroup} from "@nextui-org/react";
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
+    const router = useRouter()
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -26,6 +28,8 @@ export default function Home() {
                     Toast.fire({
                         icon: "success",
                         title: "Login successful"
+                    }).then(() => {
+                        router.push('/dashboard')
                     });
                     response.json().then((data) => {
                         console.log(data.userlevel);
